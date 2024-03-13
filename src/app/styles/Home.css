@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+*{
+    font-family: "Josefin Sans";
+}
+
+#new-list:hover #h2-new-list{
+    color: #ffff;
+    font-weight: bold;
+}
+#div-cores h1{
+    border: 1px solid #525252;
+}
+@media (max-width: 720px) {
+    #container-new-list{
+        max-width: 90%;
+        max-height: 90%;
+    }
+    #container{
+        
+        max-width: 90%;
+        max-height: 90%;
+    }
+}
