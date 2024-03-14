@@ -10,26 +10,15 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
     const [newList, setNewList] = useState(false);
-    const [color, setColor] = useState(localStorage.getItem('savedColor') || 'rgb(234,88,12)');
     const [title, setTitle] = useState('');
 
-    const [list, setList] = useState(() => {
-        const storedList = localStorage.getItem('reminders');
-        if (storedList) {
-            return JSON.parse(storedList);
-        } else {
-            return [
+    const [color, setColor] = useState('rgb(234,88,12)');
+
+    const [list, setList] = useState([
                 { id: 1, titulo: 'Correr' },
                 { id: 2, titulo: 'Arrumar o Quarto' },
                 { id: 3, titulo: 'Lavar a Louça' },
-            ];
-        }
-    });
-
-    useEffect(() => {
-        localStorage.setItem('reminders', JSON.stringify(list));
-        localStorage.setItem('savedColor', color); 
-    }, [list, color]);
+            ]);
 
     function handleNewReminder() {
         setNewList(true);
@@ -84,7 +73,7 @@ export default function Home() {
                     Lembretes
                 </h1>
                 {list.map((lista) => (
-                    <div className="m-3 mt-2 relative flex">
+                    <div className="m-3 mt-2 relative flex" key={lista.id}>
                         {lista.complete ? (
                             <span>
                                 <MdRadioButtonChecked
