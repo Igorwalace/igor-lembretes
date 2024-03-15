@@ -3,6 +3,7 @@ import {
     MdOutlineDelete,
     MdRadioButtonUnchecked,
     MdRadioButtonChecked,
+    MdOutlineAdd,
 } from 'react-icons/md';
 import { IoIosAdd } from 'react-icons/io';
 import '../styles/Home.css';
@@ -36,7 +37,7 @@ export default function Home() {
         ];
         setList(newObjet);
     };
-    const handleCloserNewList = (e) => {
+    const handleSendNewList = (e) => {
         e.preventDefault();
 
         if (!title) {
@@ -114,12 +115,12 @@ export default function Home() {
                 <div
                     onClick={handleNewReminder}
                     id="new-list"
-                    className="absolute bottom-4 left-2 flex justify-center items-center hover:bg-orange-300 duration-500 rounded-md pr-1.5 pt-1 cursor-pointer"
+                    className={`absolute bottom-4 left-2 flex justify-center items-center hover:bg-orange-300 duration-500 rounded-md pr-1.5 pt-1 cursor-pointer`}
                 >
                     <span id="span-mais">
-                        <IoIosAdd
+                        <MdOutlineAdd 
                             size={25}
-                            className=""
+                            className="relative top-[-1px] duration-500"
                             style={{ color: color }}
                         />
                     </span>
@@ -161,7 +162,7 @@ export default function Home() {
                         ></h1>
                     </div>
 
-                    <form onSubmit={handleCloserNewList}>
+                    <form onSubmit={handleSendNewList}>
                         <label
                             htmlFor="search"
                             id="label-titulo bg-transparent"
