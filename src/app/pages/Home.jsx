@@ -20,6 +20,17 @@ export default function Home() {
                 { id: 2, titulo: 'Arrumar o Quarto' },
                 { id: 3, titulo: 'Lavar a Louça' },
             ]);
+            
+    useEffect(() => {
+      localStorage.setItem('list', JSON.stringify(list));
+    }, [list]);
+    
+    useEffect(() => {
+      const list = JSON.parse(localStorage.getItem('list'));
+      if (list) {
+       setList(list);
+      }
+    }, []); 
 
     function handleNewReminder() {
         setNewList(true);
