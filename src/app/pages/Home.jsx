@@ -15,22 +15,25 @@ export default function Home() {
 
     const [color, setColor] = useState('rgb(234,88,12)');
             
-    useEffect(() => {
-      const listV = JSON.parse(localStorage.getItem('list'));
-      if (listV) {
-       setList(list);
-      }
-    }, []);
-    
-    const [list, setList] = useState([
-                { id: 1, titulo: 'Correr' },
-                { id: 2, titulo: 'Arrumar o Quarto' },
-                { id: 3, titulo: 'Lavar a Louça' },
-            ]);
-            
-    useEffect(() => {
-      localStorage.setItem('list', JSON.stringify(list));
-    }, [list]);
+    const TodoList = () => {
+  const [list, setList] = useState([
+    { id: 1, titulo: 'Correr' },
+    { id: 2, titulo: 'Arrumar o Quarto' },
+    { id: 3, titulo: 'Lavar a Louça' }, // Corrected duplicate title
+  ]);
+
+  // Fetch data from localStorage only on mount (optional, based on your use case)
+  useEffect(() => {
+    const listV = JSON.parse(localStorage.getItem('list'));
+    if (listV) {
+      setList(listV); // Update state with data from localStorage if available
+    }
+  }, []);
+
+  // Save list to localStorage whenever the list state changes
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
     function handleNewReminder() {
         setNewList(true);
