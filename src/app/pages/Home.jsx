@@ -26,8 +26,8 @@ export default function Home() {
     }, [list]);
     
     useEffect(() => {
-      const list = JSON.parse(localStorage.getItem('list'));
-      if (list) {
+      const listV = JSON.parse(localStorage.getItem('list'));
+      if (listV) {
        setList(list);
       }
     }, []); 
