@@ -14,7 +14,14 @@ export default function Home() {
     const [title, setTitle] = useState('');
 
     const [color, setColor] = useState('rgb(234,88,12)');
-
+            
+    useEffect(() => {
+      const listV = JSON.parse(localStorage.getItem('list'));
+      if (listV) {
+       setList(list);
+      }
+    }, []);
+    
     const [list, setList] = useState([
                 { id: 1, titulo: 'Correr' },
                 { id: 2, titulo: 'Arrumar o Quarto' },
@@ -24,13 +31,6 @@ export default function Home() {
     useEffect(() => {
       localStorage.setItem('list', JSON.stringify(list));
     }, [list]);
-    
-    useEffect(() => {
-      const listV = JSON.parse(localStorage.getItem('list'));
-      if (listV) {
-       setList(list);
-      }
-    }, []); 
 
     function handleNewReminder() {
         setNewList(true);
