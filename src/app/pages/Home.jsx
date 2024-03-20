@@ -15,12 +15,11 @@ export default function Home() {
 
     const [color, setColor] = useState('rgb(234,88,12)');
             
-    const TodoList = () => {
-  const [list, setList] = useState([
-    { id: 1, titulo: 'Correr' },
-    { id: 2, titulo: 'Arrumar o Quarto' },
-    { id: 3, titulo: 'Lavar a Louça' }, // Corrected duplicate title
-  ]);
+    const [list, setList] = useState([
+      { id: 1, titulo: 'Correr' },
+      { id: 2, titulo: 'Arrumar o Quarto' },
+      { id: 3, titulo: 'Lavar a Louça' }, // Corrected duplicate title
+    ]);
 
   // Fetch data from localStorage only on mount (optional, based on your use case)
   useEffect(() => {
