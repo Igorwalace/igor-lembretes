@@ -5,7 +5,6 @@ import {
     MdRadioButtonChecked,
     MdOutlineAdd,
 } from 'react-icons/md';
-import { IoIosAdd } from 'react-icons/io';
 import '../styles/Home.css';
 import { useEffect, useState } from 'react';
 
@@ -13,13 +12,35 @@ export default function Home() {
     const [newList, setNewList] = useState(false);
     const [title, setTitle] = useState('');
 
-    const [color, setColor] = useState('rgb(234,88,12)');
+    const [color, setColor] = useState(() => {
+        if(typeof window !== 'undefined'){
+            if (localStorage.getItem('color')) {
+                return JSON.parse(localStorage.getItem('color'));
+            } else {
+                return 'rgb(234,88,12)';
+            }
+        }
+    });
 
-    const [list, setList] = useState([
-                { id: 1, titulo: 'Correr' },
-                { id: 2, titulo: 'Arrumar o Quarto' },
-                { id: 3, titulo: 'Lavar a Louça' },
-            ]);
+    const [list, setList] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const listV = JSON.parse(localStorage.getItem('list'));
+            if (listV) {
+                return listV;
+            } else {
+                return [
+                    { id: 1, titulo: 'Correr' },
+                    { id: 2, titulo: 'Arrumar o Quarto' },
+                    { id: 3, titulo: 'Lavar a Louça' },
+                ];
+            }
+        }
+    });
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list));
+        localStorage.setItem('color', JSON.stringify(color));
+    }, [list, color]);
 
     function handleNewReminder() {
         setNewList(true);
@@ -118,7 +139,7 @@ export default function Home() {
                     className={`absolute bottom-4 left-2 flex justify-center items-center hover:bg-orange-300 duration-500 rounded-md pr-1.5 pt-1 cursor-pointer`}
                 >
                     <span id="span-mais">
-                        <MdOutlineAdd 
+                        <MdOutlineAdd
                             size={25}
                             className="relative top-[-1px] duration-500"
                             style={{ color: color }}
