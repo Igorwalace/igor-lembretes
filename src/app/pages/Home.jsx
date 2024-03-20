@@ -27,12 +27,17 @@ export default function Home() {
     if (listV) {
       setList(listV); // Update state with data from localStorage if available
     }
+    const colorV = JSON.parse(localStorage.getItem('color'));
+    if (colorV) {
+      setColor(colorV); // Update state with data from localStorage if available
+    }
   }, []);
 
   // Save list to localStorage whenever the list state changes
   useEffect(() => {
-    localStorage.setItem('list', JSON.stringify(list));
-  }, [list]);
+    localStorage.setItem('list', JSON.stringify(list)),
+    localStorage.setItem('color', JSON.stringify(color))
+  }, [list, color]);
 
     function handleNewReminder() {
         setNewList(true);
