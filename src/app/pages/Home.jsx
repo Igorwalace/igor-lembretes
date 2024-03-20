@@ -9,28 +9,30 @@ import '../styles/Home.css';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-    
     const [newList, setNewList] = useState(false);
     const [title, setTitle] = useState('');
 
-    const [color, setColor] = useState(() => {
-        if (localStorage.getItem('color')) {
-            return JSON.parse(localStorage.getItem('color'));
-        } else {
-            return 'rgb(234,88,12)';
-        }
-    });
+    const [color, setColor] = useState('rgb(234,88,12)');
 
-    const [list, setList] = useState(() => {
-        if (localStorage.getItem('list')) {
-            return JSON.parse(localStorage.getItem('list'));
-        } else {
-            return [];
-        }
-    })
+    const [list, setList] = useState([
+        { id: 1, titulo: 'Correr' },
+        { id: 2, titulo: 'Arrumar o Quarto' },
+        { id: 3, titulo: 'Lavar a Louça' },
+    ]);
 
     useEffect(() => {
-        localStorage.setItem('list', JSON.stringify(list),);
+        const newList = JSON.parse(localStorage.getItem('list'));
+        if (newList) {
+            setList(newList);
+        }
+        const newColor = JSON.parse(localStorage.getItem('color'));
+        if (newColor) {
+            setColor(newColor);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list)),
         localStorage.setItem('color', JSON.stringify(color));
     }, [list, color]);
 
