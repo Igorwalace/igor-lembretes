@@ -77,7 +77,7 @@ export default function Home() {
     };
 
     return (
-        <main className="bg-[#162c46] min-h-screen flex justify-center p-2">
+        <main className="bg-[#162c46] min-h-screen flex justify-center items-center p-2 pb-10">
             <div
                 className="w-[400px] h-[500px] bg-white rounded-xl mt-4 p-3 relative"
                 id="container"
